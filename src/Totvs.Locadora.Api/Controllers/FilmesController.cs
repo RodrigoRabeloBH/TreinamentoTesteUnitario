@@ -78,5 +78,21 @@ namespace Totvs.Locadora.Api.Controllers
 
             return BadRequest(StatusCode(500));
         }
+
+        [HttpGet("generoFilme/{genero}")]
+        public async Task<IActionResult> RetornaFilmesPorGenero(string genero)
+        {
+            var filmes = await _rep.RetornaPorGenero(genero);
+
+            return Ok(_mapper.Map<IEnumerable<FilmeViewModel>>(filmes));
+        }
+
+        [HttpGet("qtd/{genero}")]
+        public async Task<IActionResult> RetornaQtdFilmesPorGenero(string genero)
+        {
+            int qtd = await _rep.RetornaQtdPorGenero(genero);
+
+            return Ok(qtd);
+        }
     }
 }
