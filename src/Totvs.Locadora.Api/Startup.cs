@@ -27,6 +27,8 @@ namespace Totvs.Locadora.Api
             services.AddAutoMapper(typeof(Startup));
 
             services.AddScoped<IFilmeServicos, FilmeServicos>();
+
+            services.AddCors();
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -34,6 +36,8 @@ namespace Totvs.Locadora.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors(opt => opt.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 
             app.UseHttpsRedirection();
 
