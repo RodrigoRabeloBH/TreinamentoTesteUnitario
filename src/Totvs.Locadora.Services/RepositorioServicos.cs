@@ -35,13 +35,12 @@ namespace Totvs.Locadora.Services
             _context?.Dispose();
         }
 
-        public virtual async Task<bool> Insere(T entity)
+        public virtual async Task Insere(T entity)
         {
             try
             {
                 _context.Set<T>().Add(entity);
                 await _context.SaveChangesAsync();
-                return true;
             }
             catch (Exception ex)
             {

@@ -48,11 +48,9 @@ namespace Totvs.Locadora.Api.Controllers
         {
             if (!ModelState.IsValid) return BadRequest();
 
-            bool result = await _rep.Insere(_mapper.Map<Filme>(model));
+            await _rep.Insere(_mapper.Map<Filme>(model));
 
-            if (result) return Ok("Filme inserido com sucesso!");
-
-            return BadRequest(StatusCode(500));
+            return Ok("Filme inserido com sucesso!");
         }
 
         [HttpPut]
